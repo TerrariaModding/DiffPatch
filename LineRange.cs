@@ -62,5 +62,17 @@ namespace DiffPatch
 			if (this.end - start > 0)
 				yield return new LineRange { start = start, end = this.end };
 		}
+
+		public override bool Equals(object obj)
+		{
+			return obj is LineRange range &&
+				   start == range.start &&
+				   end == range.end;
+		}
+
+		public override int GetHashCode()
+		{
+			return HashCode.Combine(start, end);
+		}
 	}
 }
